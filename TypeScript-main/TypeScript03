@@ -1,0 +1,113 @@
+[기본-초기화 매개변수(Default Parameter)]
+
+타입스크립트에서는 값을 제공하지 않거나, undefined로 설정한 매개변수의 값에 기본 값을 할당할 수 있습니다.
+
+간단한 예제를 통해 확인해 봅시다.
+
+1. 지시사항
+say 메소드의 매개변수 lastWord를 Default Parameter로 수정하여 코드가 정상 동작하게 수정하세요.
+Default Parameter는 타입스크립트로 설정합니다.
+
+// lastWord를 Default Parameter 형식으로 수정해주세요.
+function say(firstWord: string, lastWord: string = "타입스크립트") {  
+  return firstWord + " " + lastWord;
+}
+
+[선택적매개변수(Optional Parameter)]
+•JavaScript에서는모든매개변수가선택적으로, 인수가없다면undefined가된다.
+•TypeScript에서도선택적매개변수를사용할수있다. (변수명뒤에‘?’)
+
+console.log(say("엘리스")) // "엘리스 타입스크립트" 출력
+
+[나머지 매개변수 (Rest Parameters)]
+•컴파일러는생략부호(...) 뒤의인자배열을빌드해함수에서사용할수있다.
+•나머지매개변수는매개변수의수를무한으로취급한다.
+•아무것도넘겨주지않을수도있다
+
+생략 부호 ... 뒤의 이름으로 전달된 인자 배열을 빌드하여 함수에서 사용 가능합니다.
+나머지 매개변수는 선택적 매개변수들의 수를 무한히 선언할 수 있습니다.
+
+1. 지시사항
+makeWord 메소드의 매개변수 restOfChar를 rest parameter로 수정하여 코드가 정상 동작하게 수정하세요.
+
+// restOfChar를 rest parameters형식으로 수정해주세요
+function makeWord(firstChar: string,...restOfChar: string[]) {  
+  return firstChar + restOfChar.join("")
+}
+
+let word = makeWord("타", "입", "스", "크", "립", "트")
+
+console.log(word) // 타입스크립트 출력
+
+•함수를정의할때사용되는변수를매개변수라고한다.
+•함수를호출할때사용되는값을인수라고한다.
+•인자값== 매개변수== Parameter
+functionadd(x,y){
+  returnx+y;
+}
+  add(2,5);
+
+[일급객체]
+
+•일급객체(first-class object) = 다른 객체들에 일반적으로 적용 가능한 연산을 모두 지원하는 객체를 일급객체라고한다.
+•일급객체의조건
+  다른함수에매개변수로제공할수있다.
+  함수에서반환가능하다.
+  변수에할당가능하다.
+•JavaScript와TypeScript의함수는일급객체(first-classobject)이다.
+
+[함수선언방법(5가지)]
+
+[함수선언식]
+
+functionworld(name){
+  return'hello $(name)';
+}
+
+[함수표현식]
+
+letworld2 = function(name) {
+  return'hello$(name)';
+}
+
+[화살표함수표현식]
+
+letworld3 = (name) => {
+  return'hello$(name)';
+}
+
+[단축형화살표함수표현식]
+
+let world4 = (name)=> 'hello$(name)'; 
+
+[함수생성자]
+
+let world5 = new Function("name",
+  'return"hello" + name');
+
+함수생성자는되도록사용을권장하지않는다.
+
+[TypeScript를이용해함수사용하기]
+
+•TypeScript 함수작성시반환타입을추론하도록하는걸권장한다.
+•함수의매개변수와인수의타입이호환가능하게작성한다.
+
+[타입추론]
+
+•TypeScript 컴파일러는방정식의한쪽에만타입이있더라도타입을추론할수있다.
+•이러한타입추론형태를“contextual typing”이라고한다.
+•이를통해프로그램에서타입을유지하기위한노력을줄일수있다.
+•인수의타입을잘못전달하면에러가발생한다.
+
+[일반적인함수]
+let f12 = function (x:number,y:number):number{
+  returnx+y;
+}
+
+[contextual typing]
+
+//매개변수x와y는number타입
+let
+f12:(baseValue:number,increment:number)=>number=function(x,y){
+  returnx+y;
+}

@@ -1,0 +1,190 @@
+[TypeScript의기본Type]
+•TypeScript는JavaScript 코드에변수나함수등Type을정의할수있다.
+•Type을나타내기위해서타입표기(Type Annotation)를사용한다.
+•TypeScript의Type기본자료형(primitive type)참조자료형(reference type)추가제공자료형
+
+[기본자료형]
+•기본자료형(primitive type)
+    object 와reference 형태가아닌실제값을저장하는자료형
+    primitive type 내장함수를사용가능한것은자바스크립트처리방식덕분
+
+•종류
+-string
+-boolean
+-number
+-null
+-undefined
+-symbol (ES6추가)
+
+[기본자료형(string, boolean, number)]
+코드
+
+//string
+//문자열을저장하는타입
+letstr:string="hi";
+
+//Boolean
+//참/거짓을저장하는타입
+letisSucceeded:boolean=true;
+
+//number//부동소수값을저장하는타입
+//2진수,8진수,10진수,16진수사용가능
+letdecimal:number=6;
+lethex:number=0xf00d;
+letbinary:number=0b1010;
+letoctal:number=0o744;02
+
+[기본자료형(null, undefined)]
+코드
+//null
+//값이의도적으로비어있는상태를저장하는타입
+letn:null=null;
+
+//undefined
+//아무값이할당되지않은상태를저장하는타입
+letu:undefined=undefined;
+
+//typeof로데이터타입을확인typeofnull
+//'object'typeofundefined
+//'undefined'
+
+null===undefined//false
+null==undefined//true
+null===null//true
+null==null//true
+!null//true
+isNaN(1+null)//false
+isNaN(1+undefined)//true
+
+[참조자료형]
+
+•참조자료형(reference type)
+객체, 배열, 함수등과같은Object형식의타입
+메모리에값을주소로저장하고, 출력시메모리주소와일치하는값을출력
+
+•종류
+-object
+-array
+-function 
+
+[참조자료형(object, array)]
+
+//object
+//기본자료형에해당하지않는타입
+//string,boolean,number,null,undefined를제외한타입
+functioncreate(o:object):void{}
+create({prop:0})//성공
+create([1,2,3])//성공
+create("string")//error
+create(false)//error
+create(42)//error
+create(null)//error
+create(undefined)//error
+
+//array
+//배열을저장하는타입
+letarr:number[]=[1,2,3]
+//아래와같이제네릭을사용한타입표기가능
+letarr:Array<number>=[1,2,3
+
+[TypeScript제공자료형]
+•추가제공자료형
+    TypeScript에서개발자의편의를위해추가로제공하는타입
+•종류
+-tuple
+-enum
+-any
+-void
+-never
+
+[Enum]
+enum은 특정 값(상수)들의 집합입니다.
+
+장점
+코드가 단순해지며, 가독성이 좋습니다.
+인스턴스 생성과 상속을 방지하여 상수값의 타입안정성이 보장됩니다.
+
+지시사항
+1.지금 예제코드는 컴파일시 에러가 발생합니다.
+2. Car enum을 이용해서 taxi 변수에 알맞은 값을 할당해서 정상동작할수 있게 수정해주세요.
+
+// enum 선언
+enum Car { 
+    BUS = "bus", 
+    TAXI = "taxi", 
+    SUV = "suv" 
+}
+
+// enum Car를 이용해서 taxi값을 할당해주세요.
+const taxi:Car = Car.TAXI;
+console.log(taxi); // TAXI 출력
+
+[Partial]
+Utility types 중 하나인 Partial은 프로퍼티를 선택적으로 만드는 타입으로 구성할 수 있습니다.
+
+•TypeScript는공통타입변환을용이하게하기위해유틸리티타입을제공한다.
+•유틸리티타입은전역으로사용가능하다.
+•종류
+-Partial<T>, Readonly<T>
+-Record<K,T>, Pick<T,K>
+-Omit<T,K>, Exclude<T,U>, Extract<T,U>
+-NonNullable<T>, Parameters<T>, ConstructorParameters<T>          
+-ReturnType<T>, Required<T>
+
+지시사항
+1. updateTodo 메소드의 매개변수 obj 타입 Todo를 Utitly types를 이용하여 코드가 정상 동작하게 수정하세요.
+
+interface Todo {
+  title: string
+  description: string
+}
+
+// obj매개변수 타입에 Partial Utility types을 추가해주세요
+function updateTodo(obj: Partial<Todo>) { 
+  return obj;
+}
+
+const result = updateTodo({
+  title: "title",
+})
+
+console.log(result); // { title: 'title' } 출력
+
+[Omit]
+Utility types 중 하나인 Omit은 모든 프로퍼티를 선택한 다음 K를 제거한 타입을 구성하기 위해 사용합니다.
+
+1. 지시사항
+타입 TodoPreview에 할당된 Todo인터페이스를 Utitly types을 이용하여 코드가 정상 동작하게 수정하세요.
+
+interface Todo {
+  title: string
+  description: string
+  completed: boolean
+}
+
+// Omit을 이용해 description 프로퍼티를 제외해봅니다.
+type TodoPreview = Omit<Todo, "description">
+
+const todo: TodoPreview = {
+  title: "Clean room",
+  completed: false,  
+}
+
+[Pick]
+Utility types 중 하나인 Pick은 프로퍼티 K의 집합을 선택해 타입을 구성 합니다.
+
+1. 지시사항
+타입 TodoPreview 에 할당된 Todo interface를 Utitly types를 이용하여 코드가 정상 동작하게 수정하세요.
+
+interface Todo {
+  title: string
+  description: string
+  completed: boolean
+}
+
+// Pick을 이용해 title 프로퍼티를 포함해봅니다..
+type TodoPreview = Pick<Todo,"title">
+
+const todo: TodoPreview = {
+  title: "Clean room"  
+}

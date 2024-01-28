@@ -1,0 +1,148 @@
+Interface란?
+Interface는 일반적으로 타입 체크를 위해 사용되며 변수, 함수, 클래스에 사용할 수 있습니다.
+
+지시사항
+1. developer 변수에 Person 인터페이스 타입을 지정했습니다.
+2. sayMyJob을 호출하면 개발자가 콘솔화면에 나올 수 있도록 작성해주세요.
+
+interface Person {
+  job: string
+}
+
+function sayMyJob(obj: Person) {
+  console.log(obj.job)
+}
+
+// developer 변수에 interface Person 타입이 선언이 되어있습니다.
+// 오류가 발생하지 않게, developer 변수에 프로퍼티값을 선언해주세요
+const developer: Person = { job : "개발자"}
+
+sayMyJob(developer) // 개발자
+
+[Interface 확장]
+
+Interface는 클래스와 마찬가지로 인터페이스도 인터페이스간의 확장이 가능합니다.
+
+지시사항
+1. BullDog class에 Dog interface를 implements했습니다
+2. Dog interface에 Animal interface를 확장해서 makeSound(), run() 메소드를 구현해주세요.
+
+interface Animal {
+  makeSound(): void
+}
+
+// Dog 인터페이스에 Animal 인터페이스를 확장하세요.
+interface Dog extends Animal {  
+  run(): void
+}
+
+// BullDog class는 Dog interface를 implements했기 때문에,
+// interface가 가지고 있는 함수를 class에서 구현시켜야합니다.
+class BullDog implements Dog {
+    makeSound() : void {
+        console.log("멍멍")
+    }
+    run() : void {
+        console.log("달리기")
+    }
+}
+
+const bullDog = new BullDog();
+bullDog.makeSound(); // 멍멍 출력
+bullDog.run(); // 달리기 출력
+
+[Interface types (class)]
+
+Interface는 클래스가 특정 통신 프로토콜을 충족시키도록 명시적으로 강제할 수 있습니다.
+
+C#과 Java와 같은 언어에서 인터페이스를 사용하는 가장 일반적인 방법 동일합니다.
+
+지시사항
+Dog 클래스에 Animal인터페이스를 implements합니다.
+makeSound를 호출해서 멍멍이 콘솔 화면에 나올 수 있도록 작성해주세요.
+
+interface Animal {
+  makeSound(): void
+}
+
+// Dog class에 Animal interface를 implements합니다.
+// 따라서 interface가 가지고 있는 함수를 class에서 구현해야 합니다.
+class Dog implements Animal{
+    makeSound() :  void {
+        console.log("멍멍")
+    }
+    // makeSound() 함수를 구현해주세요.
+    // 함수 호출 시, "멍멍" 콘솔이 나타날수 있게 cosole.log()를 구현해주세요
+}
+
+const dog = new Dog();
+dog.makeSound(); // 멍멍 출력
+
+[Optional Properties]
+optional properties는 인터페이스 프로퍼티를 선택적 속성으로 만들때 사용합니다.
+optional properties는 ? 키워드를 붙여서 사용합니다.
+
+지시사항
+1. Config 인터페이스에 width 프로퍼티를 optional 프로퍼티로 변경하여 코드가 정상 동작되게 수정해주세요.
+
+// width 프로퍼티를 optional로 변경해주세요.
+interface Config {
+  color: string,
+  width?: number
+}
+
+function createSqure(config: Config): { color: string; area: number } {
+  return {
+    color: config.color,
+    area: 100 * (config.width ? config.width : 1), // width 프로퍼티를 선택적 속성으로 사용합니다.
+  }
+}
+
+const config = {
+  color : 'red'
+};
+
+createSqure(config);
+
+[전략 패턴 (Strategy pattern)]
+전략 패턴은 객체가 할 수 있는 행위들 각각을 전략으로 만들어 놓고, 동적으로 행위의 수정이 필요한 경우 전략을 바꾸는 것만으로 행위의 수정이 가능하도록 만든 패턴입니다.
+
+지시사항
+1. CardPaymentStrategy 와CashPaymentStrategy를 PaymentStrategy implements 시켜서 클래스를 구현해 주세요.
+2. vendingMachine.pay()를 호출 했을 때, cash pay, card pay가 각각 콘솔화면에 나올 수 있도록 구현해 주세요.
+
+interface PaymentStrategy {
+  pay(): void
+}
+
+class CashPaymentStrategy implements PaymentStrategy {
+  pay(): void {
+    console.log("cash pay")
+  }
+}
+
+class CardPaymentStrategy implements PaymentStrategy {
+  pay(): void {
+    console.log("card pay")
+  }
+}
+
+class VendingMachine {
+  private paymentStrategy: PaymentStrategy
+
+  setPaymentStrategy(paymentStrategy: PaymentStrategy) {
+    this.paymentStrategy = paymentStrategy
+  }
+
+  pay() {
+    this.paymentStrategy.pay()
+  }
+}
+
+const vendingMachine = new VendingMachine()
+
+vendingMachine.setPaymentStrategy(new CashPaymentStrategy())
+vendingMachine.pay() // cash pay
+
+vendingMachine.setPaymentStrategy(new CardPaymentStrategy())
+vendingMachine.pay() // card pay

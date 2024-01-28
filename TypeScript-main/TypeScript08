@@ -1,0 +1,95 @@
+[Generic]
+Generic은 코드를 작성할 때가 아니라 코드가 수행될 때 타입을 명시할 때 사용합니다.
+
+지시사항
+1. Queue 클래스를 Generic을 활용하여 push와 pop 메소드를 구현해주세요.
+
+class Queue<T> {
+  private data: Array<T> = []
+  // 제네릭을 활용하여 push()와 pop() 메소드를 구현해주세요.
+  
+push(item: T){
+    this.data.push(item);
+}
+pop():T | undefined{
+    return this.data.shift();
+    }
+}
+const numberQueue = new Queue<number>()
+
+numberQueue.push(0)
+console.log(numberQueue.pop())
+
+[Union type]
+Union type은 키워드 |를 통해 둘 이상의 타입을 선언하는 방식입니다.
+
+지시사항
+printMessage 메소드의 매개변수를 수정하여 printMessage(1234)와 printMessage("hello") 호출이 정상 동작이 가능하게 수정하세요.
+
+// string과 number 두 타입이 허용될수 있게 union type을 선언해주세요
+const printMessage = (message:number|string) => {
+    console.log(message)  
+}
+
+printMessage(1234)
+printMessage("hello")
+
+[Constraints]
+제네릭 제약조건은 존재하지 않는 속성에 접근하는 것을 막기 위해 사용합니다.
+키워드는 extends이며 특정 타입들로만 동작하는 제네릭 함수를 만들고 싶을 때 사용합니다.
+
+지시사항
+printMessage 메소드의 제네릭 타입의 제약조건을 수정하여printMessage<boolean>(true) 이 정상 동작하게 수정하세요.
+
+// 제네릭 매개변수 타입이 boolean이 허용되게 수정해주세요.
+const printMessage = <T extends boolean>(message: T): void => {
+    console.log(message)  
+}
+
+printMessage<boolean>(true)
+
+[Factory pattern with Generic]
+factory pattern이란 객체를 생성하는 인터페이스는 미리 정의하되, 인스턴스를 만들 클래스의 결정은 서브 클래스에서 진행하는 패턴입니다.
+
+지시사항
+1. Car 클래스를 implements 하는 Bus 클래스를 생성하세요.
+drive() 함수는 따로 구현하지 않아도 됩니다.
+park() 함수에서는 버스 주차를 출력합니다.
+2. Car 클래스를 implements 하는 Taxi 클래스를 생성하세요.
+drive() 함수는 따로 구현하지 않아도 됩니다.
+park() 함수에서는 택시 주차를 출력합니다.
+3. CarFactory 클래스의 getInstance메소드를 이용해서 new 키워드를 사용하지 않고 Bus, Taxi 인스턴스를 생성해 주세요.
+
+interface Car {
+  drive(): void
+  park(): void
+}
+
+// Bus 클래스와 Taxi 클래스를 생성하세요.
+class Bus implements Car{ 
+    drive(): void{}
+    park():void{
+        console.log("버스 주차")
+    }
+}
+class Taxi implements Car{ 
+    drive(): void{}
+    park():void{
+        console.log("택시 주차")
+    }
+}
+
+// Factory pattern을 적용하기 위한 서브 클래스입니다.
+class CarFactory { 
+  static getInstance<T extends Car>(type: { new (): T }): T {
+    return new type()
+  }
+}
+
+// CarFactory 클래스의 getInstance메소드를 이용해서 Bus, Taxi 인스턴스를 생성해주세요. 
+const bus = CarFactory.getInstance(Bus);
+const taxi = CarFactory.getInstance(Taxi);
+
+bus.park();
+taxi.park();
+
