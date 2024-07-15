@@ -1,0 +1,262 @@
+1. 미니 금융 관리 애플리케이션
+클래스 리스트
+User
+
+속성:
+Long id
+String username
+String password
+String email
+메서드:
+getId()
+getUsername()
+getPassword()
+getEmail()
+setId(Long id)
+setUsername(String username)
+setPassword(String password)
+setEmail(String email)
+Budget
+
+속성:
+Long id
+Double amount
+Long userId
+Date startDate
+Date endDate
+
+메서드:
+getId()
+getAmount()
+getUserId()
+getStartDate()
+getEndDate()
+setId(Long id)
+setAmount(Double amount)
+setUserId(Long userId)
+setStartDate(Date startDate)
+setEndDate(Date endDate)
+Expense
+
+속성:
+Long id
+Double amount
+String category
+Date date
+Long userId
+
+메서드:
+getId()
+getAmount()
+getCategory()
+getDate()
+getUserId()
+setId(Long id)
+setAmount(Double amount)
+setCategory(String category)
+setDate(Date date)
+setUserId(Long userId)
+Report
+
+속성:
+Long id
+Long userId
+Date generatedDate
+String reportData
+
+메서드:
+getId()
+getUserId()
+getGeneratedDate()
+getReportData()
+setId(Long id)
+setUserId(Long userId)
+setGeneratedDate(Date generatedDate)
+setReportData(String reportData)
+
+
+
+
+
+
+
+
+
+
+2. IoT 기반 스마트 홈 관리 시스템
+클래스 리스트
+User
+
+속성:
+Long id
+String username
+String password
+String email
+메서드:
+getId()
+getUsername()
+getPassword()
+getEmail()
+setId(Long id)
+setUsername(String username)
+setPassword(String password)
+setEmail(String email)
+Device
+
+속성:
+Long id
+String name
+String type
+String status
+Long userId
+메서드:
+getId()
+getName()
+getType()
+getStatus()
+getUserId()
+setId(Long id)
+setName(String name)
+setType(String type)
+setStatus(String status)
+setUserId(Long userId)
+AutomationRule
+
+속성:
+Long id
+String ruleName
+String condition
+String action
+Long deviceId
+메서드:
+getId()
+getRuleName()
+getCondition()
+getAction()
+getDeviceId()
+setId(Long id)
+setRuleName(String ruleName)
+setCondition(String condition)
+setAction(String action)
+setDeviceId(Long deviceId)
+DeviceStatus
+
+속성:
+Long id
+Long deviceId
+String status
+Date timestamp
+메서드:
+getId()
+getDeviceId()
+getStatus()
+getTimestamp()
+setId(Long id)
+setDeviceId(Long deviceId)
+setStatus(String status)
+setTimestamp(Date timestamp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. e-커머스 추천 시스템
+클래스 리스트
+User
+
+속성:
+Long id
+String username
+String password
+String email
+메서드:
+getId()
+getUsername()
+getPassword()
+getEmail()
+setId(Long id)
+setUsername(String username)
+setPassword(String password)
+setEmail(String email)
+Product
+
+속성:
+Long id
+String name
+String description
+Double price
+String category
+메서드:
+getId()
+getName()
+getDescription()
+getPrice()
+getCategory()
+setId(Long id)
+setName(String name)
+setDescription(String description)
+setPrice(Double price)
+setCategory(String category)
+Order
+
+속성:
+Long id
+Long userId
+Date orderDate
+Double totalAmount
+메서드:
+getId()
+getUserId()
+getOrderDate()
+getTotalAmount()
+setId(Long id)
+setUserId(Long userId)
+setOrderDate(Date orderDate)
+setTotalAmount(Double totalAmount)
+OrderItem
+
+속성:
+Long id
+Long orderId
+Long productId
+Integer quantity
+Double price
+메서드:
+getId()
+getOrderId()
+getProductId()
+getQuantity()
+getPrice()
+setId(Long id)
+setOrderId(Long orderId)
+setProductId(Long productId)
+setQuantity(Integer quantity)
+setPrice(Double price)
+Recommendation
+
+속성:
+Long id
+Long userId
+Long productId
+Double score
+메서드:
+getId()
+getUserId()
+getProductId()
+getScore()
+setId(Long id)
+setUserId(Long userId)
+setProductId(Long productId)
+setScore(Double score)

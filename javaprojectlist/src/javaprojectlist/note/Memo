@@ -1,0 +1,181 @@
+1. 미니 금융 관리 애플리케이션
+
++---------------------+
+|       User          |
++---------------------+
+| - id: Long          |
+| - username: String  |
+| - password: String  |
+| - email: String     |
++---------------------+
+           |
+           |
+          (1)
+           |
+           |
+          (1..*)
++---------------------+
+|       Budget        |
++---------------------+
+| - id: Long          |
+| - amount: Double    |
+| - userId: Long      |
+| - startDate: Date   |
+| - endDate: Date     |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|       Expense       |
++---------------------+
+| - id: Long          |
+| - amount: Double    |
+| - category: String  |
+| - date: Date        |
+| - userId: Long      |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|      Report         |
++---------------------+
+| - id: Long          |
+| - userId: Long      |
+| - generatedDate: Date|
+| - reportData: String |
++---------------------+
+
+
+2. IoT 기반 스마트 홈 관리 시스템
+
++---------------------+
+|       User          |
++---------------------+
+| - id: Long          |
+| - username: String  |
+| - password: String  |
+| - email: String     |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|      Device         |
++---------------------+
+| - id: Long          |
+| - name: String      |
+| - type: String      |
+| - status: String    |
+| - userId: Long      |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|     AutomationRule  |
++---------------------+
+| - id: Long          |
+| - ruleName: String  |
+| - condition: String |
+| - action: String    |
+| - deviceId: Long    |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|    DeviceStatus     |
++---------------------+
+| - id: Long          |
+| - deviceId: Long    |
+| - status: String    |
+| - timestamp: Date   |
++---------------------+
+
+
+3. e-커머스 추천 시스템
+
++---------------------+
+|       User          |
++---------------------+
+| - id: Long          |
+| - username: String  |
+| - password: String  |
+| - email: String     |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|      Product        |
++---------------------+
+| - id: Long          |
+| - name: String      |
+| - description: String|
+| - price: Double     |
+| - category: String  |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|      Order          |
++---------------------+
+| - id: Long          |
+| - userId: Long      |
+| - orderDate: Date   |
+| - totalAmount: Double|
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|  OrderItem          |
++---------------------+
+| - id: Long          |
+| - orderId: Long     |
+| - productId: Long   |
+| - quantity: Integer |
+| - price: Double     |
++---------------------+
+           |
+           |
+          (1..*)
+           |
+           |
+          (1..*)
++---------------------+
+|    Recommendation   |
++---------------------+
+| - id: Long          |
+| - userId: Long      |
+| - productId: Long   |
+| - score: Double     |
++---------------------+
+
